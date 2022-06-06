@@ -6,6 +6,9 @@ router.get('/', function(req, res, next) {
   console.log(req)
   res.json({name:"ayushi"})
 });
+router.get('/data', function(req, res, next) {
+    res.json({name:req.query.fname,name:req.query.lname});
+  });
 // router.get('/:da', function(req, res, next) {
 //       console.log(req.params.da)
 //       res.json({name:req.params.da})
