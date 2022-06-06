@@ -7,7 +7,10 @@ router.get('/', function(req, res, next) {
   res.json({name:"ayushi"})
 });
 router.get('/data', function(req, res, next) {
-    res.json({name:req.query.fname,name:req.query.lname});
+    res.json({name:req.query.fname,lname:req.query.lname});
+  });
+  router.post('/about', function(req, res, next) {
+    res.json({name:req.body.fname,lname:req.body.lname});
   });
 // router.get('/:da', function(req, res, next) {
 //       console.log(req.params.da)
