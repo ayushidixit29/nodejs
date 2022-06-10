@@ -1,22 +1,40 @@
 var express = require('express');
 var router = express.Router();
+var mysql = require('mysql');
 
-/* GET home page. */
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "ayushi",
+  password: "1234",
+  database: "app_db"
+});
+
 router.get('/', function(req, res, next) {
-  res.render('login')
+  console.log("Ayushi");
+    con.connect(function(err) {
+        if (err) console.log("err");
+        console.log("Connected to mySQL!");
+      });
+    res.render('login')
 });
-router.get('/data', function(req, res, next) {
-    res.json({"name":req.query.fname,lname:req.query.lname})
-  });
-//   router.post('/about', function(req, res, next) {
-//     res.json({name:req.body.fname,lname:req.body.lname});
-//   });
-// router.get('/:da', function(req, res, next) {
-//       console.log(req.params.da)
-//       res.json({name:req.params.da})
-// });
-router.get('/:da-:ta', function(req, res, next) {
-      console.log(req.params)
-      res.json({name:req.params.da+","+req.params.ta+"="+req.params.da+req.params.ta})
+
+router.post('/getLogin', function(req, res, next) {
+    console.log(req.body)
+    var sql = "INSERT INTO `ayushi` (`email`, `pass`) \
+    VALUES ('"+req.body.email+"', '"+req.body.pass+"');"
+    console.log(sql)
+   con.connect()
+      con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log(result);
+
+      });
+      // var sql1 = "select * from `qqq`"
+      // con.query(sql1, function (err, result) {
+      //   if (err) throw err;
+      //   console.log(result);
+      // });
+res.json({"Name":req.body})
 });
+
 module.exports = router;
