@@ -3,10 +3,10 @@ var router = express.Router();
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "ayushi",
-  password: "1234",
-  database: "app_db"
+  host: "easylearning.guru",
+  user: "kcc_student",
+  password: "Kccitm.edu.in1",
+  database: "kccStudent"
 });
 
 router.get('/', function(req, res, next) {
@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/getLogin', function(req, res, next) {
     console.log(req.body)
-    var sql = "INSERT INTO `ayushi` (`email`, `pass`) \
+    var sql = "INSERT INTO `Ayushi` (`email`, `pass`) \
     VALUES ('"+req.body.email+"', '"+req.body.pass+"');"
     console.log(sql)
    con.connect()
